@@ -1,0 +1,12 @@
+You can use either a full path or relative path. When you run a script, you always need to provide the script's path. Providing the path helps you to know exactly what you are running.
+Execution policy - This is really a safety policy. It can be restricted or unrestricted.
+You can output text with either Write-Host or Write-Output. You may use single or double quotes. Your choice depends on whether you want to interpolate the values.
+  1) Single Quotes - Single quotes specify literals; what you write is what you get.
+  2) Double Quotes - When you use double quotes, variables in strings are interpolated.
+  3) $() You can also write an expression within double quotes.
+
+SCOPE
+Scope rules help you understand what values are visible at a given point. They also help you understand how to change a value.
+Scopes can nest - A scope can have a parent scope. A parent scope is an outer scople, outside of the scope you're in. For example, a local scope can have the global scope as a parent scope. Conversely, a scope can have a nested scope, also known as a child scope.
+PROFILES
+A profile is a script that runs when PowerShell starts. You can use a profile to customize your environment to, for example, change background colors and erros and do other types of customizations. PowerShell will apply these changes to each new session you start.
