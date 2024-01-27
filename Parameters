@@ -1,0 +1,52 @@
+You might notices that scripts aren't too flexible. There is a better way to handle changes: use parameters.
+Parameters allows users to select options or send input to the scripts. You won't need to change your scripts as frequently, because in some cases you'll just need to change the parameter value.
+Cmdlets, functions, and scripts all accept parameters.
+To declare a parameter, you need to use the keyword Param.
+  Param()
+Inside the parentheses you will define your parameters, seperating them with commas. Here is an example:
+# CreateFile.ps1
+Param (
+  $Path
+)
+New-Item $Path # Creates a new file at $Path.
+Write-Host "File $Path was created"
+
+Here are some things to consider when you define parameters:
+- Is it mandatory? Is the parameter optional or required?
+- What values are allowed? What values are reasonable?
+- Does it accept more than one type of value? Does the parameter accept any type of value, like string, Boolean, integer, and object?
+- Can the parameter rely on a default? Can you omit the value altogether and rely on a default value instead?
+- Can you further improve the user experience? Can you be even clearer to your user by providing a Help message?
+
+Param(
+   [Parameter(Mandatory)]
+   $Path
+)
+New-Item $Path
+Write-Host "File created at path $Path"
+
+if you run the above script and omit a value for $PATH...
+
+cmdlet CreateFile.ps1 at command pipeline position 1
+Supply values for the following parameters:
+Path:
+
+SAMPLE BACK UP Script
+$date = Get-Date -format "yyyy-MM-dd"
+Compress-Archive -Path './app' -CompressionLevel 'Fastest' -DestinationPath "./backup-$date"
+Write-Host "Created backup at $('./backup-' + $date + '.zip')"
+
+The script invokes Compress-Archive and uses three parameters:
+
+-Path is the directory of the files that you want to compress.
+-CompressionLevel specifies how much to compress the files.
+-DestinationPath is the path to the resulting compressed file.
+
+Same script with parameters
+Param(
+    [string]$PATH = './app',
+    [string]$DestinationPath = './'
+)
+$date = Get-Date -format "yyyy-MM-dd"
+Compress-Archive -Path './app' -CompressionLevel 'Fastest' -DestinationPath "./backup-$date"
+Write-Host "Created backup at $('./backup-' + $date + '.zip')"

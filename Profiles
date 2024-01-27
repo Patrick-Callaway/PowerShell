@@ -1,0 +1,9 @@
+Setting Up a profile.
+pwsh will set up a powershell session.
+$Profile | Select-Object *
+After that command create a profile for the current user and the current host, using New-Item.
+New-Item `
+  -ItemType "file" `
+  -Value 'Write-Host "Hello Patrick, welcome back" -foregroundcolor Green ' `
+  -Path $Profile.CurrentUserCurrentHost -Force
+The -Force will overwrite any existing content. Rerun pwsh.
